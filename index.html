@@ -398,6 +398,25 @@
 
     </div>
 
+
+    <script>
+        function scaleToFit() {
+            var page = document.querySelector('.a4-page');
+            if (!page) return;
+            page.style.transform = 'none';
+            page.style.position = 'absolute';
+            var pageW = page.offsetWidth;
+            var pageH = page.offsetHeight;
+            var scaleX = window.innerWidth  / pageW;
+            var scaleY = window.innerHeight / pageH;
+            var scale  = Math.max(scaleX, scaleY);
+            page.style.transform = 'scale(' + scale + ')';
+            page.style.left = ((window.innerWidth  - pageW * scale) / 2) + 'px';
+            page.style.top  = ((window.innerHeight - pageH * scale) / 2) + 'px';
+        }
+        window.addEventListener('load',   scaleToFit);
+        window.addEventListener('resize', scaleToFit);
+    </script>
 </body>
 
 </html>

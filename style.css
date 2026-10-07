@@ -376,19 +376,126 @@ footer {
 }
 
 /* ═══════════════════════════════════════════════════
-   PRINT  –  proper A4 on paper
+   PRINT  –  pixel-perfect A4
 ═══════════════════════════════════════════════════ */
-@page { size: A4; margin: 0; }
+@page { size: A4 portrait; margin: 0; }
 
 @media print {
+
+    /* Force background colours / images to print */
+    *, *::before, *::after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
     html, body {
         width: 210mm !important;
         height: 297mm !important;
-        overflow: visible !important;
+        overflow: hidden !important;
+        background: #ffffff !important;
+        font-family: 'Inter', 'Segoe UI', Arial, sans-serif !important;
     }
+
+    /* ── root ── */
     .resume {
+        display: flex !important;
         width: 210mm !important;
         height: 297mm !important;
+        overflow: hidden !important;
     }
-    .sidebar { width: 55mm !important; }
+
+    /* ── sidebar ── */
+    .sidebar {
+        width: 55mm !important;
+        min-width: 55mm !important;
+        max-width: 55mm !important;
+        height: 297mm !important;
+        padding: 14pt 11pt !important;
+        display: flex !important;
+        flex-direction: column !important;
+        background: #0b1220 !important;
+    }
+
+    .avatar { width: 56pt !important; height: 56pt !important; margin-bottom: 6pt !important; }
+
+    .profile h1    { font-size: 13pt !important; }
+    .s-title       { font-size: 7pt  !important; margin-top: 2pt !important; }
+    .divider       { margin: 6pt auto !important; }
+    .degree        { font-size: 6.5pt !important; }
+    .badge         { font-size: 5.5pt !important; margin-top: 4pt !important; padding: 2pt 5pt !important; }
+
+    .side-block         { margin-top: 9pt !important; }
+    .side-block h3      { font-size: 5.5pt !important; margin-bottom: 4pt !important; }
+    .side-block p,
+    .side-block a       { font-size: 6.5pt !important; margin-bottom: 3pt !important; }
+    .interest-tags span { font-size: 5.5pt !important; padding: 2pt 4pt !important; }
+
+    .side-footer        { padding-top: 7pt !important; }
+    .side-footer strong { font-size: 5pt !important; }
+    .side-footer span   { font-size: 4.5pt !important; }
+
+    /* ── main ── */
+    .main {
+        flex: 1 !important;
+        height: 297mm !important;
+        padding: 12pt 14pt 9pt !important;
+        gap: 7pt !important;
+        display: flex !important;
+        flex-direction: column !important;
+        overflow: hidden !important;
+        background: #ffffff !important;
+    }
+
+    /* hero */
+    .hero { padding-bottom: 8pt !important; }
+    .available      { font-size: 5.5pt !important; margin-bottom: 3pt !important; }
+    .hero h2        { font-size: 17pt !important; }
+    .hero-text p    { font-size: 6.5pt !important; margin-top: 3pt !important; }
+    .year-box       { width: 36pt !important; height: 36pt !important; }
+    .year-box strong { font-size: 14pt !important; }
+    .year-box span   { font-size: 5pt !important; }
+
+    /* rows */
+    .row { gap: 6pt !important; margin: 0 !important; }
+
+    /* cards */
+    .card { padding: 7pt 9pt !important; border-radius: 5pt !important; }
+    .card-title { margin-bottom: 5pt !important; gap: 5pt !important; }
+    .card-title span { font-size: 5.5pt !important; }
+    .card-title h3   { font-size: 7.5pt !important; }
+
+    /* about */
+    .desc { font-size: 6.5pt !important; margin-bottom: 3pt !important; }
+    .detail-grid div   { padding: 4pt !important; }
+    .detail-grid small { font-size: 5pt !important; }
+    .detail-grid strong { font-size: 6.5pt !important; }
+
+    /* skills */
+    .skills-grid { gap: 5pt 9pt !important; }
+    .sn strong  { font-size: 6.5pt !important; }
+    .sn span    { font-size: 5.5pt !important; }
+    .bar        { height: 2.5pt !important; }
+
+    /* tools */
+    .tool-tags span { font-size: 6pt !important; padding: 2pt 5pt !important; }
+
+    /* focus */
+    .focus-list { gap: 5pt !important; }
+    .focus-list b { width: 13pt !important; height: 13pt !important; font-size: 5pt !important; }
+    .focus-list p { font-size: 6.5pt !important; }
+
+    /* career */
+    .career-card { padding: 9pt 11pt !important; }
+    .career-card > span { font-size: 5.5pt !important; }
+    .career-card h3 { font-size: 10pt !important; margin-top: 3pt !important; }
+    .career-card p  { font-size: 6.5pt !important; margin-top: 3pt !important; }
+
+    /* connect */
+    .connect-card { }
+    .connect-grid { gap: 5pt !important; }
+    .connect-grid a { padding: 5pt 6pt !important; font-size: 6.5pt !important; }
+    .connect-grid small { font-size: 5pt !important; }
+
+    /* footer */
+    footer { font-size: 5.5pt !important; padding-top: 5pt !important; }
 }

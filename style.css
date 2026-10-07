@@ -8,611 +8,404 @@
 }
 
 /* ═══════════════════════════════════════════════════
-   ROOT VIEWPORT (SINGLE SCREEN FIT)
+   CANVAS (DESKTOP PAPER VIEW)
 ═══════════════════════════════════════════════════ */
 html, body {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
+    width: 100%;
+    min-height: 100vh;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: #090e1a;
+    background: #e9edf2;
+    color: #1f2937;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
 }
 
-.resume {
+.resume-wrapper {
     display: flex;
-    width: 100vw;
-    height: 100vh;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px 15px;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* ═══════════════════════════════════════════════════
+   A4 RESUME PAPER SHEET (STANDARD 210mm x 297mm)
+═══════════════════════════════════════════════════ */
+.resume-paper {
+    width: 794px;         /* Standard A4 width at 96 DPI */
+    height: 1123px;       /* Standard A4 height at 96 DPI */
+    background: #ffffff;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    position: relative;
+}
+
+/* ═══════════════════════════════════════════════════
+   HEADER (PHOTO & CANDIDATE TITLE)
+═══════════════════════════════════════════════════ */
+.resume-header {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    padding-bottom: 6px;
+    flex-shrink: 0;
+}
+
+.header-left {
+    width: 250px;
+    position: relative;
+}
+
+/* Top-left forest green block */
+.header-left::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 185px;
+    height: 140px;
+    background: #355e4b;
+    border-bottom-right-radius: 4px;
+    z-index: 1;
+}
+
+/* Photo overlapping green block */
+.photo-badge {
+    position: relative;
+    z-index: 2;
+    margin-top: 22px;
+    margin-left: 42px;
+    width: 122px;
+    height: 122px;
+    border-radius: 50%;
+    border: 4px solid #ffffff;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
     overflow: hidden;
     background: #ffffff;
 }
 
-/* ═══════════════════════════════════════════════════
-   SIDEBAR (DARK THEME)
-═══════════════════════════════════════════════════ */
-.sidebar {
-    width: clamp(235px, 22vw, 305px);
-    height: 100vh;
-    flex-shrink: 0;
-    background: #090e1a;
-    color: #f1f5f9;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: clamp(12px, 1.6vh, 20px) clamp(14px, 1.3vw, 20px);
-    overflow: hidden;
-    border-right: 1px solid #1e293b;
-}
-
-/* Profile */
-.profile {
-    text-align: center;
-    flex-shrink: 0;
-}
-
-.avatar {
-    width: clamp(70px, 6.6vw, 92px);
-    height: clamp(70px, 6.6vw, 92px);
-    border-radius: 50%;
-    border: 3px solid #3b82f6;
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.35);
-    padding: 2.5px;
-    margin: 0 auto clamp(5px, 0.7vh, 8px);
-}
-.avatar img {
+.photo-badge img {
     width: 100%;
     height: 100%;
-    border-radius: 50%;
     object-fit: cover;
     display: block;
 }
 
-.profile h1 {
-    font-size: clamp(18px, 1.6vw, 23px);
-    font-weight: 800;
-    letter-spacing: -0.4px;
-    color: #ffffff;
-    line-height: 1.15;
-}
-.s-title {
-    color: #60a5fa;
-    font-size: clamp(10.5px, 0.85vw, 12.5px);
-    font-weight: 600;
-    margin-top: clamp(2px, 0.3vh, 4px);
-}
-.divider {
-    width: 40px;
-    height: 2.5px;
-    background: linear-gradient(90deg, #2563eb, #60a5fa);
-    border-radius: 2px;
-    margin: clamp(5px, 0.7vh, 8px) auto;
-}
-.degree {
-    color: #94a3b8;
-    font-size: clamp(9.5px, 0.75vw, 11.5px);
-    line-height: 1.4;
-}
-.badge {
-    display: inline-block;
-    margin-top: clamp(4px, 0.5vh, 7px);
-    padding: clamp(2.5px, 0.3vh, 4px) clamp(8px, 0.6vw, 11px);
-    background: rgba(37, 99, 235, 0.15);
-    border: 1px solid #2563eb;
-    border-radius: 20px;
-    color: #93c5fd;
-    font-size: clamp(8px, 0.62vw, 9.5px);
-    font-weight: 800;
-    letter-spacing: 0.8px;
+/* Right header content */
+.header-right {
+    flex: 1;
+    padding-top: 42px;
+    padding-left: 20px;
+    padding-right: 48px;
 }
 
-/* Sidebar Blocks */
-.side-block {
-    margin-top: clamp(5px, 0.8vh, 10px);
-    flex-shrink: 0;
-}
-.side-block h3 {
-    color: #60a5fa;
-    font-size: clamp(9px, 0.7vw, 10.5px);
+.candidate-name {
+    font-size: 38px;
     font-weight: 800;
-    letter-spacing: 1.1px;
-    margin-bottom: clamp(3px, 0.4vh, 5px);
+    letter-spacing: 1.5px;
+    color: #224734;
+    line-height: 1;
     text-transform: uppercase;
 }
-.side-block p {
-    color: #cbd5e1;
-    font-size: clamp(10px, 0.78vw, 12px);
-    line-height: 1.4;
-    margin-bottom: clamp(2px, 0.25vh, 3.5px);
+
+.title-row {
     display: flex;
     align-items: center;
-}
-.side-block a {
-    display: flex;
-    align-items: center;
-    color: #cbd5e1;
-    font-size: clamp(10px, 0.78vw, 12px);
-    text-decoration: none;
-    line-height: 1.4;
-    margin-bottom: clamp(2px, 0.25vh, 3.5px);
-    transition: color 0.15s ease;
-}
-.side-block a:hover {
-    color: #60a5fa;
-}
-.s-svg {
-    width: 13px;
-    height: 13px;
-    margin-right: 6px;
-    flex-shrink: 0;
+    gap: 16px;
+    margin-top: 10px;
 }
 
-/* Education in Sidebar */
-.edu-item strong {
-    display: block;
-    color: #ffffff;
-    font-size: clamp(10.5px, 0.8vw, 12px);
-    font-weight: 700;
-}
-.edu-item span {
-    display: block;
-    color: #94a3b8;
-    font-size: clamp(9.5px, 0.72vw, 11px);
-}
-.edu-item small {
-    display: block;
-    color: #60a5fa;
-    font-size: clamp(8.5px, 0.65vw, 10px);
+.candidate-role {
+    font-size: 14px;
     font-weight: 600;
-    margin-top: 1px;
+    color: #374151;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
 }
 
-/* Certifications in Sidebar */
-.cert-list p {
-    color: #e2e8f0;
-    font-size: clamp(9.5px, 0.72vw, 11px);
-    margin-bottom: 2px;
-}
-
-/* Tags in Sidebar */
-.interest-tags, .lang-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 3.5px;
-}
-.interest-tags span, .lang-tags span {
-    padding: clamp(2px, 0.25vh, 3.5px) clamp(5px, 0.4vw, 7px);
-    background: #141e33;
-    border: 1px solid #243450;
-    border-radius: 4px;
-    color: #cbd5e1;
-    font-size: clamp(8.5px, 0.65vw, 10px);
-    font-weight: 500;
-}
-
-/* Sidebar Footer */
-.side-footer {
-    margin-top: auto;
-    padding-top: clamp(5px, 0.6vh, 8px);
-    border-top: 1px solid #1e293b;
-    text-align: center;
-    flex-shrink: 0;
-}
-.side-footer strong {
-    display: block;
-    color: #60a5fa;
-    font-size: clamp(7.5px, 0.58vw, 9px);
-    letter-spacing: 1.1px;
-    font-weight: 800;
-}
-.side-footer span {
-    display: block;
-    margin-top: 1px;
-    color: #64748b;
-    font-size: clamp(7px, 0.52vw, 8.5px);
+.title-accent-bar {
+    width: 115px;
+    height: 16px;
+    background: #355e4b;
+    border-radius: 2px;
 }
 
 /* ═══════════════════════════════════════════════════
-   MAIN CONTENT (LIGHT THEME)
+   TWO-COLUMN BODY
 ═══════════════════════════════════════════════════ */
-.main {
-    flex: 1;
-    min-width: 0;
-    height: 100vh;
+.resume-body {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: clamp(10px, 1.4vh, 18px) clamp(16px, 1.6vw, 24px) clamp(8px, 1.1vh, 14px);
-    gap: clamp(6px, 0.8vh, 10px);
+    flex: 1;
+    padding: 8px 48px 16px 48px;
+    gap: 38px;
     overflow: hidden;
-    background: #ffffff;
 }
 
-/* ── HERO ── */
-.hero {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 14px;
-    padding-bottom: clamp(6px, 0.8vh, 10px);
-    border-bottom: 1.5px solid #e2e8f0;
-    flex-shrink: 0;
-}
-.available {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: clamp(2px, 0.3vh, 4px);
-    color: #2563eb;
-    font-size: clamp(8.5px, 0.68vw, 10.5px);
-    font-weight: 800;
-    letter-spacing: 1px;
-}
-.available span {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #22c55e;
-    box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
-    flex-shrink: 0;
-}
-.hero h2 {
-    font-size: clamp(20px, 2.1vw, 32px);
-    line-height: 1.12;
-    letter-spacing: -0.5px;
-    color: #0f172a;
-    font-weight: 800;
-}
-.hero h2 strong {
-    color: #2563eb;
-}
-.hero-text p {
-    margin-top: clamp(2px, 0.35vh, 5px);
-    color: #475569;
-    font-size: clamp(10.5px, 0.8vw, 12.5px);
-    line-height: 1.45;
-}
-.year-box {
-    width: clamp(48px, 4.2vw, 64px);
-    height: clamp(48px, 4.2vw, 64px);
+/* ── LEFT COLUMN (NARROW) ── */
+.left-col {
+    width: 218px;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: #eff6ff;
-    border: 1.5px solid #bfdbfe;
-    border-radius: 9px;
+    justify-content: space-between;
 }
-.year-box strong {
-    color: #2563eb;
-    font-size: clamp(18px, 1.6vw, 25px);
-    font-weight: 800;
-    line-height: 1;
+
+.left-col .sec {
+    margin-bottom: 0;
 }
-.year-box span {
-    color: #64748b;
-    font-size: clamp(7px, 0.55vw, 8.5px);
+
+.left-col .item {
+    margin-bottom: 7px;
+}
+.left-col .item:last-child {
+    margin-bottom: 0;
+}
+
+.left-col .item .label {
+    display: block;
+    font-size: 11.5px;
     font-weight: 800;
-    letter-spacing: 1px;
+    color: #224734;
+    margin-bottom: 1px;
+}
+
+.left-col .item .val {
+    display: block;
+    font-size: 10.8px;
+    color: #4b5563;
+    line-height: 1.35;
+    word-break: break-word;
+    text-decoration: none;
+}
+
+.left-col .item a.val:hover {
+    color: #355e4b;
+    text-decoration: underline;
+}
+
+.sec-divider {
+    width: 100%;
+    height: 1px;
+    background: #d1d5db;
+    margin: 8px 0;
+}
+
+/* Section Headings Left */
+.sec-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: #224734;
+    margin-bottom: 7px;
+    letter-spacing: 0.3px;
+}
+
+/* Education Left */
+.edu-block .edu-degree {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.3;
+}
+
+.edu-block .edu-sub {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: #355e4b;
     margin-top: 2px;
 }
 
-/* ── GRID ROWS ── */
-.row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(8px, 0.85vw, 12px);
-    flex: 1;
-    min-height: 0;
+.edu-block .edu-school {
+    font-size: 10.5px;
+    color: #4b5563;
+    margin-top: 2px;
 }
 
-/* ── CARD BASE ── */
-.card {
-    border: 1.5px solid #e2e8f0;
-    border-radius: 8px;
-    padding: clamp(8px, 1.1vh, 14px) clamp(10px, 1vw, 15px);
+.edu-block .edu-affil {
+    font-size: 10px;
+    color: #6b7280;
+}
+
+.edu-block .edu-date {
+    display: inline-block;
+    font-size: 9.8px;
+    font-weight: 700;
+    color: #355e4b;
+    margin-top: 3px;
+}
+
+/* Skills & Language Bars */
+.skill-list, .lang-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6.5px;
+}
+
+.sk-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sk-name {
+    font-size: 10.8px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.sk-bar {
+    width: 60px;
+    height: 4.5px;
+    background: #e5e7eb;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.sk-bar span {
+    display: block;
+    height: 100%;
+    background: #355e4b;
+    border-radius: 2px;
+}
+
+/* Certifications & Strengths bullets */
+.cert-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cert-bullets li {
+    font-size: 10.5px;
+    color: #4b5563;
+    position: relative;
+    padding-left: 12px;
+    line-height: 1.35;
+}
+
+.cert-bullets li::before {
+    content: '•';
+    color: #355e4b;
+    font-size: 14px;
+    position: absolute;
+    left: 0;
+    top: -1px;
+}
+
+/* ── RIGHT COLUMN (WIDE) ── */
+.right-col {
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 0;
-    overflow: hidden;
-    background: #ffffff;
 }
-.card-title {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: clamp(4px, 0.6vh, 7px);
-    flex-shrink: 0;
+
+.content-sec {
+    margin-bottom: 0;
 }
-.card-title span {
-    color: #2563eb;
-    font-size: clamp(8px, 0.65vw, 10px);
+
+.content-title {
+    font-size: 16.5px;
     font-weight: 800;
-    letter-spacing: 1px;
-}
-.card-title h3 {
-    color: #0f172a;
-    font-size: clamp(11px, 0.85vw, 13.5px);
-    font-weight: 800;
+    color: #224734;
+    padding-bottom: 4px;
+    border-bottom: 1.5px solid #224734;
+    margin-bottom: 8px;
     letter-spacing: 0.2px;
 }
 
-/* ── 01 ABOUT ME ── */
-.desc {
-    color: #334155;
-    font-size: clamp(10px, 0.78vw, 12px);
-    line-height: 1.45;
-}
-.desc + .desc {
-    margin-top: clamp(3px, 0.4vh, 5px);
-}
-.highlight-p {
-    color: #1e40af;
-    font-weight: 600;
-}
-.detail-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5px;
-    margin-top: clamp(5px, 0.7vh, 8px);
-    flex-shrink: 0;
-}
-.detail-grid div {
-    padding: clamp(4px, 0.5vh, 6px) clamp(6px, 0.55vw, 8px);
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 5px;
-}
-.detail-grid small {
-    display: block;
-    color: #2563eb;
-    font-size: clamp(7px, 0.55vw, 8.5px);
-    font-weight: 800;
-    letter-spacing: 0.7px;
-    margin-bottom: 1.5px;
-}
-.detail-grid strong {
-    color: #0f172a;
-    font-size: clamp(9.5px, 0.72vw, 11.5px);
-    font-weight: 700;
+.summary-text {
+    font-size: 11.2px;
+    color: #374151;
+    line-height: 1.55;
+    text-align: justify;
 }
 
-/* ── 02 SKILLS (8 SKILLS 4x2) ── */
-.skills-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(4px, 0.6vh, 7px) clamp(8px, 0.8vw, 12px);
-    flex: 1;
-    align-content: space-between;
+/* Experience Items */
+.exp-item {
+    margin-bottom: 9px;
 }
-.skill {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+
+.exp-item:last-child {
+    margin-bottom: 0;
 }
-.sn {
+
+.exp-header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 2.5px;
 }
-.sn strong {
-    color: #0f172a;
-    font-size: clamp(10.5px, 0.78vw, 12px);
+
+.exp-role {
+    font-size: 12px;
+    font-weight: 800;
+    color: #111827;
+    letter-spacing: 0.4px;
+}
+
+.exp-dates {
+    font-size: 10px;
     font-weight: 700;
+    color: #6b7280;
 }
-.sn span {
-    color: #64748b;
-    font-size: clamp(8.5px, 0.65vw, 10px);
+
+.exp-company {
+    font-size: 10.8px;
     font-weight: 600;
-}
-.bar {
-    width: 100%;
-    height: 5px;
-    background: #e2e8f0;
-    border-radius: 4px;
-    overflow: hidden;
-}
-.bar i {
-    display: block;
-    height: 100%;
-    background: linear-gradient(90deg, #2563eb, #3b82f6);
-    border-radius: 4px;
-}
-
-/* ── 03 TOOLS & TECHNOLOGIES ── */
-.tools-card {
-    flex-shrink: 0;
-    padding: clamp(7px, 0.9vh, 10px) clamp(10px, 1vw, 15px);
-}
-.tools-card .card-title {
-    margin-bottom: clamp(3px, 0.4vh, 6px);
-}
-.tool-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: clamp(3.5px, 0.35vw, 5px);
-}
-.tool-tags span {
-    padding: clamp(2.5px, 0.32vh, 4.5px) clamp(6px, 0.5vw, 9px);
-    background: #f0f7ff;
-    color: #1e40af;
-    border: 1px solid #bfdbfe;
-    border-radius: 4px;
-    font-size: clamp(9.5px, 0.7vw, 11px);
-    font-weight: 700;
-    white-space: nowrap;
-}
-
-/* ── 04 CURRENT FOCUS ── */
-.focus-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(4px, 0.6vh, 8px) clamp(7px, 0.75vw, 12px);
-    flex: 1;
-    align-content: space-between;
-}
-.focus-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 7px;
-}
-.focus-item b {
-    width: clamp(19px, 1.5vw, 23px);
-    height: clamp(19px, 1.5vw, 23px);
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #eff6ff;
-    color: #2563eb;
-    border: 1px solid #bfdbfe;
-    border-radius: 5px;
-    font-size: clamp(8px, 0.6vw, 10px);
-    font-weight: 800;
+    color: #355e4b;
     margin-top: 1px;
-}
-.focus-item strong {
-    display: block;
-    color: #0f172a;
-    font-size: clamp(10px, 0.75vw, 12px);
-    font-weight: 700;
-    line-height: 1.25;
-}
-.focus-item p {
-    color: #475569;
-    font-size: clamp(9px, 0.68vw, 10.8px);
-    line-height: 1.35;
-    margin-top: 1px;
+    margin-bottom: 3px;
 }
 
-/* ── CAREER CARD ── */
-.career-card {
-    padding: clamp(9px, 1.2vh, 15px) clamp(12px, 1.2vw, 18px);
-    border-radius: 8px;
-    background: linear-gradient(135deg, #090e1a 0%, #1e3a8a 100%);
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 0;
-    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.15);
-}
-.career-tag {
-    color: #60a5fa;
-    font-size: clamp(8px, 0.62vw, 9.8px);
-    font-weight: 800;
-    letter-spacing: 1.1px;
-}
-.career-card h3 {
-    margin-top: clamp(2px, 0.3vh, 4px);
-    font-size: clamp(13px, 1.2vw, 17px);
-    line-height: 1.25;
-    font-weight: 800;
-    color: #ffffff;
-}
-.career-card h3 strong {
-    color: #60a5fa;
-}
-.career-card p {
-    margin-top: clamp(2px, 0.3vh, 4px);
-    color: #cbd5e1;
-    font-size: clamp(9.5px, 0.72vw, 11.5px);
-    line-height: 1.4;
-}
-.career-points {
-    margin-top: clamp(4px, 0.5vh, 6px);
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-}
-.career-points div {
-    font-size: clamp(9px, 0.68vw, 10.8px);
-    color: #e2e8f0;
-}
-.career-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    margin-top: clamp(4px, 0.5vh, 7px);
-}
-.career-badges span {
-    padding: clamp(2px, 0.25vh, 3.5px) clamp(6px, 0.5vw, 8px);
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-    color: #e2e8f0;
-    font-size: clamp(8.5px, 0.65vw, 10px);
-    font-weight: 600;
-}
-
-/* ── 05 CONNECT ── */
-.connect-card {
-    flex-shrink: 0;
-    padding: clamp(7px, 0.9vh, 11px) clamp(10px, 1vw, 15px);
-}
-.connect-card .card-title {
-    margin-bottom: clamp(3px, 0.4vh, 6px);
-}
-.connect-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 1.1fr 1fr;
-    gap: clamp(5px, 0.6vw, 8px);
-}
-.connect-grid a {
-    padding: clamp(5px, 0.6vh, 8px) clamp(7px, 0.7vw, 10px);
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
-    text-decoration: none;
-    display: block;
-    transition: all 0.15s ease;
-}
-.connect-grid a:hover {
-    border-color: #3b82f6;
-    background: #eff6ff;
-}
-.connect-grid small {
-    display: block;
-    color: #2563eb;
-    font-size: clamp(7px, 0.55vw, 8.5px);
-    font-weight: 800;
-    letter-spacing: 0.8px;
+.exp-desc {
+    font-size: 10.8px;
+    color: #4b5563;
+    line-height: 1.45;
+    text-align: justify;
     margin-bottom: 2px;
 }
-.connect-grid strong {
-    display: flex;
-    align-items: center;
-    color: #0f172a;
-    font-size: clamp(10px, 0.75vw, 11.8px);
-    font-weight: 700;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.c-svg {
-    width: 14px;
-    height: 14px;
-    margin-right: 5px;
-    flex-shrink: 0;
+.exp-desc:last-child {
+    margin-bottom: 0;
 }
 
-/* ── FOOTER ── */
-footer {
-    display: flex;
-    justify-content: space-between;
-    border-top: 1.5px solid #e2e8f0;
-    padding-top: clamp(3px, 0.4vh, 6px);
-    color: #64748b;
-    font-size: clamp(8.5px, 0.65vw, 10.5px);
-    font-weight: 600;
+/* Technical Competencies Grid */
+.tech-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 16px;
+}
+
+.tech-group strong {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #224734;
+    margin-bottom: 1px;
+}
+
+.tech-group span {
+    font-size: 10.5px;
+    color: #4b5563;
+    line-height: 1.35;
+}
+
+/* ═══════════════════════════════════════════════════
+   BOTTOM ACCENT BAR
+═══════════════════════════════════════════════════ */
+.resume-footer-bar {
+    width: 100%;
+    height: 12px;
+    background: #355e4b;
     flex-shrink: 0;
 }
 
 /* ═══════════════════════════════════════════════════
-   PRINT MEDIA QUERY (STRICT PIXEL-PERFECT A4 1-PAGE)
+   PRINT MEDIA QUERY (STRICT 1-PAGE A4)
 ═══════════════════════════════════════════════════ */
 @page {
     size: A4 portrait;
@@ -630,130 +423,26 @@ footer {
         height: 297mm !important;
         max-width: 210mm !important;
         max-height: 297mm !important;
-        overflow: hidden !important;
-        background: #ffffff !important;
         margin: 0 !important;
         padding: 0 !important;
+        background: #ffffff !important;
+        overflow: hidden !important;
     }
 
-    .resume {
-        display: flex !important;
+    .resume-wrapper {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: transparent !important;
+        display: block !important;
+    }
+
+    .resume-paper {
         width: 210mm !important;
         height: 297mm !important;
         max-width: 210mm !important;
         max-height: 297mm !important;
-        overflow: hidden !important;
-    }
-
-    /* ── Print Sidebar ── */
-    .sidebar {
-        width: 58mm !important;
-        min-width: 58mm !important;
-        max-width: 58mm !important;
-        height: 297mm !important;
-        padding: 12pt 10pt !important;
-        background: #090e1a !important;
-        color: #ffffff !important;
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: space-between !important;
-        overflow: hidden !important;
-    }
-
-    .avatar {
-        width: 52pt !important;
-        height: 52pt !important;
-        margin: 0 auto 4pt !important;
-        border-width: 2pt !important;
-        padding: 2pt !important;
-    }
-    .profile h1 {
-        font-size: 13.5pt !important;
-        line-height: 1.15 !important;
-    }
-    .s-title {
-        font-size: 7.2pt !important;
-        margin-top: 1.5pt !important;
-    }
-    .divider {
-        width: 30pt !important;
-        height: 1.5pt !important;
-        margin: 4pt auto !important;
-    }
-    .degree {
-        font-size: 6.5pt !important;
-        line-height: 1.3 !important;
-    }
-    .badge {
-        font-size: 5.8pt !important;
-        padding: 1.5pt 4.5pt !important;
-        margin-top: 3pt !important;
-    }
-
-    .side-block {
-        margin-top: 5.5pt !important;
-    }
-    .side-block h3 {
-        font-size: 6.2pt !important;
-        margin-bottom: 2.5pt !important;
-        letter-spacing: 0.8px !important;
-    }
-    .side-block p,
-    .side-block a {
-        font-size: 6.8pt !important;
-        line-height: 1.3 !important;
-        margin-bottom: 1.5pt !important;
-        color: #e2e8f0 !important;
-    }
-    .s-svg {
-        width: 8pt !important;
-        height: 8pt !important;
-        margin-right: 3pt !important;
-    }
-
-    .edu-item strong {
-        font-size: 6.8pt !important;
-    }
-    .edu-item span {
-        font-size: 6.2pt !important;
-    }
-    .edu-item small {
-        font-size: 5.8pt !important;
-    }
-
-    .cert-list p {
-        font-size: 6.2pt !important;
-        margin-bottom: 1.5pt !important;
-    }
-
-    .interest-tags, .lang-tags {
-        gap: 2.5pt !important;
-    }
-    .interest-tags span,
-    .lang-tags span {
-        font-size: 5.8pt !important;
-        padding: 1.2pt 3pt !important;
-    }
-
-    .side-footer {
-        padding-top: 5pt !important;
-        margin-top: auto !important;
-    }
-    .side-footer strong {
-        font-size: 5.2pt !important;
-    }
-    .side-footer span {
-        font-size: 4.8pt !important;
-    }
-
-    /* ── Print Main ── */
-    .main {
-        flex: 1 !important;
-        width: calc(210mm - 58mm) !important;
-        height: 297mm !important;
-        max-height: 297mm !important;
-        padding: 11pt 13pt 9pt !important;
-        gap: 6.5pt !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
         display: flex !important;
         flex-direction: column !important;
         justify-content: space-between !important;
@@ -761,173 +450,126 @@ footer {
         background: #ffffff !important;
     }
 
-    .hero {
-        padding-bottom: 5.5pt !important;
-        gap: 8pt !important;
-    }
-    .available {
-        font-size: 5.8pt !important;
-        margin-bottom: 1.5pt !important;
-    }
-    .available span {
-        width: 4.5pt !important;
-        height: 4.5pt !important;
-    }
-    .hero h2 {
-        font-size: 15.5pt !important;
-        line-height: 1.15 !important;
-    }
-    .hero-text p {
-        font-size: 7pt !important;
-        margin-top: 2pt !important;
-        line-height: 1.35 !important;
-    }
-    .year-box {
-        width: 32pt !important;
-        height: 32pt !important;
-        border-radius: 5pt !important;
-    }
-    .year-box strong {
-        font-size: 13pt !important;
-    }
-    .year-box span {
-        font-size: 4.8pt !important;
+    .header-left::before {
+        width: 48mm !important;
+        height: 37mm !important;
+        background: #355e4b !important;
     }
 
-    .row {
-        gap: 5.5pt !important;
+    .photo-badge {
+        width: 32mm !important;
+        height: 32mm !important;
+        margin-top: 5mm !important;
+        margin-left: 10mm !important;
+        border-width: 1mm !important;
     }
 
-    .card {
-        padding: 5.5pt 7.5pt !important;
-        border-radius: 5pt !important;
+    .header-right {
+        padding-top: 10mm !important;
+        padding-right: 12mm !important;
     }
-    .card-title {
-        margin-bottom: 3.5pt !important;
-        gap: 3.5pt !important;
+
+    .candidate-name {
+        font-size: 26pt !important;
     }
-    .card-title span {
-        font-size: 5.8pt !important;
+
+    .candidate-role {
+        font-size: 10pt !important;
     }
-    .card-title h3 {
+
+    .title-accent-bar {
+        width: 30mm !important;
+        height: 4mm !important;
+        background: #355e4b !important;
+    }
+
+    .resume-body {
+        padding: 2mm 12mm 4mm 12mm !important;
+        gap: 10mm !important;
+    }
+
+    .left-col {
+        width: 58mm !important;
+    }
+
+    .sec-title {
+        font-size: 11pt !important;
+        margin-bottom: 1.5mm !important;
+    }
+
+    .content-title {
+        font-size: 12pt !important;
+        margin-bottom: 2mm !important;
+        padding-bottom: 1mm !important;
+    }
+
+    .left-col .item .label {
+        font-size: 8.5pt !important;
+    }
+
+    .left-col .item .val {
         font-size: 7.8pt !important;
     }
 
-    .desc {
-        font-size: 6.5pt !important;
-        line-height: 1.35 !important;
-    }
-    .desc + .desc {
-        margin-top: 2.5pt !important;
-    }
-    .detail-grid {
-        gap: 3.5pt !important;
-        margin-top: 3.5pt !important;
-    }
-    .detail-grid div {
-        padding: 2.5pt 3.5pt !important;
-    }
-    .detail-grid small {
-        font-size: 4.8pt !important;
-    }
-    .detail-grid strong {
-        font-size: 6.2pt !important;
+    .edu-block .edu-degree {
+        font-size: 8.5pt !important;
     }
 
-    .skills-grid {
-        gap: 3.5pt 6pt !important;
-    }
-    .sn strong {
-        font-size: 6.8pt !important;
-    }
-    .sn span {
-        font-size: 5.8pt !important;
-    }
-    .bar {
-        height: 2.5pt !important;
+    .edu-block .edu-sub,
+    .edu-block .edu-school {
+        font-size: 7.8pt !important;
     }
 
-    .tools-card {
-        padding: 4.5pt 7.5pt !important;
-    }
-    .tool-tags {
-        gap: 2.5pt !important;
-    }
-    .tool-tags span {
-        font-size: 6pt !important;
-        padding: 1.5pt 3.5pt !important;
+    .edu-block .edu-affil,
+    .edu-block .edu-date {
+        font-size: 7.2pt !important;
     }
 
-    .focus-list {
-        gap: 3.5pt 5.5pt !important;
-    }
-    .focus-item {
-        gap: 3.5pt !important;
-    }
-    .focus-item b {
-        width: 11pt !important;
-        height: 11pt !important;
-        font-size: 5pt !important;
-    }
-    .focus-item strong {
-        font-size: 6.5pt !important;
-    }
-    .focus-item p {
-        font-size: 5.8pt !important;
-        line-height: 1.25 !important;
+    .sk-name {
+        font-size: 7.8pt !important;
     }
 
-    .career-card {
-        padding: 6.5pt 8pt !important;
-        border-radius: 5pt !important;
-    }
-    .career-tag {
-        font-size: 5.2pt !important;
-    }
-    .career-card h3 {
-        font-size: 9.5pt !important;
-        margin-top: 1.5pt !important;
-    }
-    .career-card p {
-        font-size: 6.5pt !important;
-        margin-top: 1.5pt !important;
-        line-height: 1.3 !important;
-    }
-    .career-points div {
-        font-size: 6.2pt !important;
-    }
-    .career-badges {
-        gap: 2.5pt !important;
-        margin-top: 3pt !important;
-    }
-    .career-badges span {
-        font-size: 5.2pt !important;
-        padding: 1.2pt 3pt !important;
+    .sk-bar {
+        width: 15mm !important;
+        height: 1.2mm !important;
     }
 
-    .connect-card {
-        padding: 4.5pt 7.5pt !important;
-    }
-    .connect-grid {
-        gap: 4.5pt !important;
-    }
-    .connect-grid a {
-        padding: 3pt 4.5pt !important;
-    }
-    .connect-grid small {
-        font-size: 4.8pt !important;
-    }
-    .connect-grid strong {
-        font-size: 6.5pt !important;
-    }
-    .c-svg {
-        width: 8pt !important;
-        height: 8pt !important;
-        margin-right: 3pt !important;
+    .cert-bullets li {
+        font-size: 7.8pt !important;
     }
 
-    footer {
-        font-size: 5.5pt !important;
-        padding-top: 3pt !important;
+    .summary-text {
+        font-size: 8.2pt !important;
+        line-height: 1.5 !important;
+    }
+
+    .exp-role {
+        font-size: 8.8pt !important;
+    }
+
+    .exp-dates {
+        font-size: 7.5pt !important;
+    }
+
+    .exp-company {
+        font-size: 8pt !important;
+    }
+
+    .exp-desc {
+        font-size: 7.8pt !important;
+        line-height: 1.45 !important;
+    }
+
+    .tech-group strong {
+        font-size: 8.2pt !important;
+    }
+
+    .tech-group span {
+        font-size: 7.8pt !important;
+    }
+
+    .resume-footer-bar {
+        height: 3.5mm !important;
+        background: #355e4b !important;
     }
 }

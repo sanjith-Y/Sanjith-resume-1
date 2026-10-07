@@ -1,810 +1,394 @@
-/* =====================================================
+/* ═══════════════════════════════════════════════════
    RESET
-===================================================== */
-
-* {
+═══════════════════════════════════════════════════ */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html {
+/* ═══════════════════════════════════════════════════
+   ROOT LAYOUT  –  fills the entire viewport, no scroll
+═══════════════════════════════════════════════════ */
+html, body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background: #0f172a;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    background: #0b1120;
 }
 
-body {
-    font-family: "Inter", "Segoe UI", Arial, sans-serif;
-    color: #172033;
-
-    /* Center the A4 page inside the viewport */
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    background: #0f172a;
-
+.resume {
     display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-/* =====================================================
-   A4 PAGE
-===================================================== */
-
-.a4-page {
-    width: 210mm;
-    height: 297mm;
-
-    flex-shrink: 0;
-
-    background: #ffffff;
-
-    display: grid;
-    grid-template-columns: 52mm 1fr;
-
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
-
-    /* JS will set transform: scale() from the center */
-    transform-origin: center center;
 }
 
-
-
-/* =====================================================
+/* ═══════════════════════════════════════════════════
    SIDEBAR
-===================================================== */
-
+═══════════════════════════════════════════════════ */
 .sidebar {
-    height: 297mm;
-
-    padding: 16px 13px;
-
+    width: clamp(170px, 21vw, 270px);
+    height: 100vh;
+    flex-shrink: 0;
     background: #0b1220;
-
-    color: #ffffff;
-
+    color: #fff;
     display: flex;
     flex-direction: column;
+    padding: clamp(14px, 2vh, 26px) clamp(12px, 1.4vw, 22px);
+    overflow: hidden;
 }
 
+/* Profile */
+.profile { text-align: center; }
 
-/* =====================================================
-   PROFILE
-===================================================== */
-
-.profile {
-    text-align: center;
-}
-
-.profile-image {
-    width: 68px;
-    height: 68px;
-
-    margin: 0 auto 8px;
-
-    padding: 3px;
-
+.avatar {
+    width: clamp(54px, 6.5vw, 88px);
+    height: clamp(54px, 6.5vw, 88px);
+    border-radius: 50%;
     border: 2px solid #3b82f6;
-
-    border-radius: 50%;
+    padding: 3px;
+    margin: 0 auto clamp(5px, 0.8vh, 10px);
 }
-
-.profile-image img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
+.avatar img {
+    width: 100%; height: 100%;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .profile h1 {
-    font-size: 18px;
-
+    font-size: clamp(13px, 1.35vw, 21px);
     font-weight: 800;
-
-    letter-spacing: -0.5px;
+    letter-spacing: -0.3px;
 }
-
-.profile h2 {
-    margin-top: 3px;
-
+.s-title {
     color: #60a5fa;
-
-    font-size: 8px;
-
+    font-size: clamp(7.5px, 0.68vw, 10.5px);
     font-weight: 600;
+    margin-top: clamp(2px, 0.3vh, 4px);
 }
-
 .divider {
-    width: 36px;
-    height: 2px;
-
-    margin: 8px auto;
-
+    width: 34px; height: 2px;
     background: #2563eb;
+    margin: clamp(6px, 0.8vh, 11px) auto;
 }
-
 .degree {
     color: #aeb9ca;
-
-    font-size: 7.5px;
-
+    font-size: clamp(7px, 0.62vw, 9px);
     line-height: 1.5;
 }
-
-.year-badge {
+.badge {
     display: inline-block;
-
-    margin-top: 6px;
-
-    padding: 3px 7px;
-
+    margin-top: clamp(4px, 0.5vh, 7px);
+    padding: clamp(2px, 0.3vh, 4px) clamp(6px, 0.55vw, 9px);
     border: 1px solid #30405a;
-
     border-radius: 20px;
-
     color: #cbd5e1;
-
-    font-size: 6.5px;
-
+    font-size: clamp(5.5px, 0.52vw, 7.5px);
     font-weight: 800;
-
     letter-spacing: 0.8px;
 }
 
+/* Side blocks */
+.side-block { margin-top: clamp(10px, 1.2vh, 17px); }
 
-/* =====================================================
-   SIDEBAR SECTIONS
-===================================================== */
-
-.side-section {
-    margin-top: 13px;
-}
-
-.side-section h3 {
-    margin-bottom: 6px;
-
+.side-block h3 {
     color: #60a5fa;
-
-    font-size: 6.5px;
-
+    font-size: clamp(6px, 0.54vw, 8px);
     font-weight: 800;
-
-    letter-spacing: 1.3px;
+    letter-spacing: 1.2px;
+    margin-bottom: clamp(4px, 0.55vh, 7px);
 }
-
-.side-section p {
-    margin-bottom: 5px;
-
+.side-block p {
     color: #b6c1d1;
-
-    font-size: 7px;
-
-    line-height: 1.4;
+    font-size: clamp(7px, 0.64vw, 9px);
+    margin-bottom: clamp(3px, 0.38vh, 5px);
+    line-height: 1.3;
 }
-
-.side-section a {
+.side-block a {
     display: block;
-
-    margin-bottom: 5px;
-
     color: #b6c1d1;
-
-    font-size: 7px;
-
+    font-size: clamp(7px, 0.64vw, 9px);
     text-decoration: none;
+    margin-bottom: clamp(3px, 0.38vh, 5px);
 }
+.side-block a:hover { color: #60a5fa; }
 
-.side-section a:hover {
-    color: #60a5fa;
-}
-
-
-/* =====================================================
-   SIDE TAGS
-===================================================== */
-
-.side-tags {
-    display: flex;
-    flex-wrap: wrap;
-
-    gap: 4px;
-}
-
-.side-tags span {
-    padding: 3px 5px;
-
+.interest-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.interest-tags span {
+    padding: clamp(2px, 0.28vh, 4px) clamp(4px, 0.38vw, 6px);
     background: #151f31;
-
     border: 1px solid #263449;
-
     border-radius: 4px;
-
     color: #cbd5e1;
-
-    font-size: 6px;
+    font-size: clamp(5.5px, 0.52vw, 7.5px);
 }
 
-
-/* =====================================================
-   SIDEBAR FOOTER
-===================================================== */
-
-.sidebar-footer {
+.side-footer {
     margin-top: auto;
-
-    padding-top: 9px;
-
+    padding-top: clamp(7px, 0.9vh, 12px);
     border-top: 1px solid #263449;
-
     text-align: center;
 }
-
-.sidebar-footer strong {
+.side-footer strong {
     display: block;
-
     color: #60a5fa;
-
-    font-size: 6px;
-
+    font-size: clamp(5px, 0.48vw, 7px);
     letter-spacing: 1px;
 }
-
-.sidebar-footer span {
+.side-footer span {
     display: block;
-
-    margin-top: 4px;
-
+    margin-top: 3px;
     color: #64748b;
-
-    font-size: 5.5px;
+    font-size: clamp(4.5px, 0.43vw, 6px);
 }
 
-
-/* =====================================================
+/* ═══════════════════════════════════════════════════
    MAIN CONTENT
-===================================================== */
-
-.main-content {
+═══════════════════════════════════════════════════ */
+.main {
+    flex: 1;
     min-width: 0;
-
-    padding: 15px 17px 10px;
-
+    height: 100vh;
     display: flex;
     flex-direction: column;
+    padding: clamp(10px, 1.4vh, 20px) clamp(14px, 1.8vw, 26px) clamp(8px, 1vh, 14px);
+    gap: clamp(5px, 0.7vh, 10px);
+    overflow: hidden;
+    background: #ffffff;
 }
 
-
-/* =====================================================
-   HERO
-===================================================== */
-
+/* ── HERO ── */
 .hero {
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
     gap: 12px;
-
-    padding-bottom: 10px;
-
+    padding-bottom: clamp(5px, 0.7vh, 10px);
     border-bottom: 1px solid #e5eaf0;
+    flex-shrink: 0;
 }
-
 .available {
     display: flex;
-
     align-items: center;
-
     gap: 5px;
-
-    margin-bottom: 5px;
-
+    margin-bottom: clamp(2px, 0.35vh, 5px);
     color: #2563eb;
-
-    font-size: 6px;
-
+    font-size: clamp(6px, 0.54vw, 8px);
     font-weight: 800;
-
     letter-spacing: 1.2px;
 }
-
 .available span {
-    width: 5px;
-    height: 5px;
-
+    width: 6px; height: 6px;
     border-radius: 50%;
-
     background: #22c55e;
 }
-
 .hero h2 {
-    color: #101827;
-
-    font-size: 21px;
-
-    line-height: 1.05;
-
-    letter-spacing: -0.8px;
+    font-size: clamp(17px, 2.1vw, 30px);
+    line-height: 1.1;
+    letter-spacing: -0.6px;
+    color: #0f172a;
 }
-
-.hero h2 strong {
-    color: #2563eb;
-}
-
-.hero p {
-    max-width: 430px;
-
-    margin-top: 5px;
-
+.hero h2 strong { color: #2563eb; }
+.hero-text p {
+    margin-top: clamp(3px, 0.38vh, 5px);
     color: #64748b;
-
-    font-size: 7px;
-
+    font-size: clamp(7px, 0.63vw, 9px);
     line-height: 1.5;
 }
-
-
-/* YEAR */
-
 .year-box {
-    width: 46px;
-    height: 46px;
-
+    width: clamp(38px, 3.8vw, 56px);
+    height: clamp(38px, 3.8vw, 56px);
     flex-shrink: 0;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    align-items: center;
-
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
     background: #f8fafc;
-
     border: 1px solid #dce3ec;
-
-    border-radius: 7px;
+    border-radius: 8px;
 }
+.year-box strong { color: #2563eb; font-size: clamp(13px, 1.4vw, 20px); }
+.year-box span { color: #94a3b8; font-size: clamp(5px, 0.44vw, 6.5px); font-weight: 800; letter-spacing: 1px; }
 
-.year-box strong {
-    color: #2563eb;
-
-    font-size: 16px;
-}
-
-.year-box span {
-    margin-top: 1px;
-
-    color: #94a3b8;
-
-    font-size: 5.5px;
-
-    font-weight: 800;
-
-    letter-spacing: 1px;
-}
-
-
-/* =====================================================
-   TWO COLUMN
-===================================================== */
-
-.two-column {
+/* ── ROW ── */
+.row {
     display: grid;
-
     grid-template-columns: 1fr 1fr;
-
-    gap: 7px;
-
-    margin-top: 8px;
+    gap: clamp(5px, 0.7vw, 10px);
+    flex: 1;
+    min-height: 0;
 }
 
-
-/* =====================================================
-   CARD
-===================================================== */
-
+/* ── CARD ── */
 .card {
-    background: #ffffff;
-
     border: 1px solid #e1e7ef;
-
-    border-radius: 6px;
-
-    padding: 9px;
-}
-
-.card:hover {
-    border-color: #c8d5e5;
-
-    box-shadow:
-        0 5px 18px rgba(15, 23, 42, 0.05);
-}
-
-
-/* =====================================================
-   SECTION TITLE
-===================================================== */
-
-.section-title {
+    border-radius: 7px;
+    padding: clamp(7px, 0.9vh, 13px) clamp(9px, 0.9vw, 14px);
     display: flex;
-
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+    transition: border-color .2s, box-shadow .2s;
+}
+.card:hover {
+    border-color: #c5d5e8;
+    box-shadow: 0 4px 16px rgba(15,23,42,.06);
+}
+.card-title {
+    display: flex;
     align-items: center;
-
     gap: 6px;
-
-    margin-bottom: 7px;
+    margin-bottom: clamp(4px, 0.55vh, 8px);
+    flex-shrink: 0;
 }
+.card-title span { color: #2563eb; font-size: clamp(6px, 0.54vw, 8px); font-weight: 800; letter-spacing: 1px; }
+.card-title h3 { color: #0f172a; font-size: clamp(7px, 0.68vw, 10px); font-weight: 800; letter-spacing: .2px; }
 
-.section-title span {
-    color: #2563eb;
-
-    font-size: 6.5px;
-
-    font-weight: 800;
-
-    letter-spacing: 1px;
-}
-
-.section-title h3 {
-    color: #172033;
-
-    font-size: 8.5px;
-
-    font-weight: 800;
-
-    letter-spacing: 0.2px;
-}
-
-
-/* =====================================================
-   ABOUT
-===================================================== */
-
-.description {
+/* About */
+.desc {
     color: #64748b;
-
-    font-size: 7px;
-
+    font-size: clamp(6.5px, 0.63vw, 9px);
     line-height: 1.5;
-
-    margin-bottom: 5px;
+    margin-bottom: clamp(3px, 0.38vh, 5px);
 }
-
-.details {
+.detail-grid {
     display: grid;
-
     grid-template-columns: 1fr 1fr;
-
     gap: 5px;
-
-    margin-top: 6px;
+    margin-top: auto;
 }
-
-.details div {
-    padding: 5px;
-
+.detail-grid div {
+    padding: clamp(4px, 0.45vh, 6px);
     background: #f8fafc;
-
-    border-radius: 4px;
+    border-radius: 5px;
 }
-
-.details small {
+.detail-grid small {
     display: block;
-
-    margin-bottom: 2px;
-
     color: #2563eb;
-
-    font-size: 5px;
-
+    font-size: clamp(4.5px, 0.43vw, 6.5px);
     font-weight: 800;
-
-    letter-spacing: 0.8px;
+    letter-spacing: .8px;
+    margin-bottom: 2px;
 }
+.detail-grid strong { color: #334155; font-size: clamp(6px, 0.58vw, 8px); }
 
-.details strong {
-    color: #334155;
-
-    font-size: 6px;
-}
-
-
-/* =====================================================
-   SKILLS
-===================================================== */
-
+/* Skills */
 .skills-grid {
     display: grid;
-
     grid-template-columns: 1fr 1fr;
-
-    gap: 7px 10px;
+    gap: clamp(5px, 0.6vh, 8px) clamp(8px, 0.9vw, 13px);
+    flex: 1;
+    align-content: start;
 }
+.sn { display: flex; justify-content: space-between; margin-bottom: 3px; }
+.sn strong { color: #334155; font-size: clamp(6px, 0.58vw, 8px); }
+.sn span { color: #94a3b8; font-size: clamp(5px, 0.48vw, 7px); }
+.bar { width: 100%; height: 3px; background: #e8edf3; border-radius: 5px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: #2563eb; border-radius: 5px; }
 
-.skill-name {
-    display: flex;
-
-    justify-content: space-between;
-
-    margin-bottom: 3px;
-}
-
-.skill-name strong {
-    color: #334155;
-
-    font-size: 6.5px;
-}
-
-.skill-name span {
-    color: #94a3b8;
-
-    font-size: 5.5px;
-}
-
-.progress {
-    width: 100%;
-
-    height: 3px;
-
-    background: #e8edf3;
-
-    border-radius: 5px;
-
-    overflow: hidden;
-}
-
-.progress i {
-    display: block;
-
-    height: 100%;
-
-    background: #2563eb;
-
-    border-radius: 5px;
-}
-
-
-/* =====================================================
-   TOOLS
-===================================================== */
-
-.tools-card {
-    margin-top: 7px;
-}
-
-.tags {
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 4px;
-}
-
-.tags span {
-    padding: 4px 6px;
-
+/* Tools */
+.tools-card { flex-shrink: 0; }
+.tool-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.tool-tags span {
+    padding: clamp(2.5px, 0.32vh, 4.5px) clamp(5px, 0.48vw, 7px);
     background: #eff6ff;
-
     color: #1d4ed8;
-
     border-radius: 4px;
-
-    font-size: 6px;
-
+    font-size: clamp(6px, 0.54vw, 8px);
     font-weight: 700;
 }
 
-
-/* =====================================================
-   CURRENT FOCUS
-===================================================== */
-
+/* Focus */
 .focus-list {
     display: grid;
-
     grid-template-columns: 1fr 1fr;
-
-    gap: 6px;
+    gap: clamp(5px, 0.6vh, 8px);
+    flex: 1;
+    align-content: start;
 }
-
-.focus-list div {
-    display: flex;
-
-    align-items: center;
-
-    gap: 5px;
-}
-
+.focus-list > div { display: flex; align-items: center; gap: 6px; }
 .focus-list b {
-    width: 16px;
-    height: 16px;
-
+    width: clamp(13px, 1.35vw, 19px);
+    height: clamp(13px, 1.35vw, 19px);
     flex-shrink: 0;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
+    display: flex; align-items: center; justify-content: center;
     background: #eff6ff;
-
     color: #2563eb;
-
-    border-radius: 3px;
-
-    font-size: 5px;
+    border-radius: 4px;
+    font-size: clamp(5px, 0.45vw, 7px);
 }
+.focus-list p { color: #64748b; font-size: clamp(6px, 0.58vw, 8.5px); line-height: 1.35; }
 
-.focus-list p {
-    color: #64748b;
-
-    font-size: 6.5px;
-
-    line-height: 1.35;
-}
-
-
-/* =====================================================
-   CAREER
-===================================================== */
-
+/* Career */
 .career-card {
-    padding: 10px;
-
-    border-radius: 6px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #0f172a,
-            #1e3a8a
-        );
-
-    color: #ffffff;
+    padding: clamp(10px, 1.2vh, 16px) clamp(12px, 1.2vw, 18px);
+    border-radius: 7px;
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 0;
 }
+.career-card > span { color: #60a5fa; font-size: clamp(5px, 0.48vw, 7px); font-weight: 800; letter-spacing: 1.2px; }
+.career-card h3 { margin-top: clamp(4px, 0.5vh, 7px); font-size: clamp(10px, 1.05vw, 15px); line-height: 1.25; }
+.career-card h3 strong { color: #60a5fa; }
+.career-card p { margin-top: clamp(4px, 0.5vh, 7px); color: #cbd5e1; font-size: clamp(6px, 0.58vw, 8.5px); line-height: 1.4; }
 
-.career-card > span {
-    color: #60a5fa;
-
-    font-size: 5.5px;
-
-    font-weight: 800;
-
-    letter-spacing: 1.2px;
-}
-
-.career-card h3 {
-    margin-top: 4px;
-
-    font-size: 11px;
-
-    line-height: 1.25;
-}
-
-.career-card h3 strong {
-    color: #60a5fa;
-}
-
-.career-card p {
-    margin-top: 4px;
-
-    color: #cbd5e1;
-
-    font-size: 6px;
-
-    line-height: 1.4;
-}
-
-
-/* =====================================================
-   CONNECT
-===================================================== */
-
-.connect-card {
-    margin-top: 7px;
-}
-
+/* Connect */
+.connect-card { flex-shrink: 0; }
 .connect-grid {
     display: grid;
-
-    grid-template-columns: 1.25fr 1fr 1fr;
-
-    gap: 5px;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: clamp(4px, 0.48vw, 7px);
 }
-
 .connect-grid a {
-    padding: 6px;
-
+    padding: clamp(5px, 0.58vh, 8px) clamp(6px, 0.58vw, 9px);
     background: #f8fafc;
-
-    border-radius: 4px;
-
+    border-radius: 5px;
     color: #334155;
-
-    font-size: 6px;
-
+    font-size: clamp(6px, 0.58vw, 8.5px);
     font-weight: 600;
-
     text-decoration: none;
-
     word-break: break-word;
+    display: block;
+    transition: color .2s;
 }
-
-.connect-grid a:hover {
-    color: #2563eb;
-}
-
+.connect-grid a:hover { color: #2563eb; }
 .connect-grid small {
     display: block;
-
-    margin-bottom: 2px;
-
     color: #2563eb;
-
-    font-size: 5px;
-
+    font-size: clamp(4.5px, 0.43vw, 6.5px);
     font-weight: 800;
-
-    letter-spacing: 0.8px;
+    letter-spacing: .8px;
+    margin-bottom: 2px;
 }
 
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
+/* Footer */
 footer {
-    margin-top: auto;
-
-    padding-top: 7px;
-
     display: flex;
-
     justify-content: space-between;
-
     border-top: 1px solid #e5eaf0;
-
+    padding-top: clamp(4px, 0.48vh, 7px);
     color: #94a3b8;
-
-    font-size: 5.5px;
+    font-size: clamp(5px, 0.48vw, 7px);
+    flex-shrink: 0;
 }
 
-
-@page {
-    size: A4;
-    margin: 0;
-}
+/* ═══════════════════════════════════════════════════
+   PRINT  –  proper A4 on paper
+═══════════════════════════════════════════════════ */
+@page { size: A4; margin: 0; }
 
 @media print {
-
-    html,
-    body {
-        display: block !important;
+    html, body {
         width: 210mm !important;
         height: 297mm !important;
         overflow: visible !important;
-        background: #ffffff !important;
     }
-
-    .a4-page {
-        display: grid !important;
+    .resume {
         width: 210mm !important;
         height: 297mm !important;
-        flex-shrink: initial !important;
-        transform: none !important;
-        overflow: hidden !important;
-        box-shadow: none !important;
     }
-
+    .sidebar { width: 55mm !important; }
 }
